@@ -21,7 +21,7 @@ public class ScriptEvaluatorTest {
 }
 ```
 
-JFC creates (in main memory):
+JFC creates and compiles (in main memory) the following code:
 ```
 package com.veracloud.jfc.scripts;
 
@@ -30,7 +30,7 @@ public final class MyJavaClass1 {
 }
 ```
 
-Output of `e.evaluate();`:
+Output of `e.evaluate()` gives:
 ```
 Hello, World!
 ```
