@@ -9,8 +9,8 @@ This is a high performance implementation, using an optimized variant of JSR 223
 
 Instances created by JFC are thread-safe if the user provided script statements are thread-safe.
 
-## Hello, World!
-Source code:
+## Example
+Source code to evaluate `System.out.println("Hello, World!")`:
 ```java
 import javax.script.ScriptException;
 
