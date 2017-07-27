@@ -30,7 +30,7 @@ public final class MyJavaClass1 {
 }
 ```
 
-`e.evaluate()` returns:
+Output of `e.evaluate();`:
 ```
 Hello, World!
 ```
