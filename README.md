@@ -13,7 +13,7 @@ Source code to evaluate `System.out.println("Hello, World!")`:
 import javax.script.ScriptException;
 
 public class ScriptEvaluatorTest {
-  private final String SCRIPT = "System.out.println(\"Hello, World!\");";
+  private static final String SCRIPT = "System.out.println(\"Hello, World!\");";
   
   public static void main(String[] args) throws ScriptException {  
     ScriptEvaluator<Void> e = new ScriptEvaluator<>(null, SCRIPT, Void.class, null, null, null);
