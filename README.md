@@ -17,7 +17,7 @@ import javax.script.ScriptException;
 public class ScriptEvaluatorTest {
   public static void main(String[] args) throws ScriptException {
     String script = "System.out.println(\"Hello, World!\");";
-    ScriptEvaluator<Void> e = new ScriptEvaluator<>(null, script, Void.class, null, null, "");
+    ScriptEvaluator<Void> e = new ScriptEvaluator<>(null, script, Void.class, null, null, null);
     e.evaluate();
   }
 }
