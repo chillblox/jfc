@@ -1,5 +1,5 @@
 # JFC - Java Function Compiler
-JFC creates, compiles and evaluates a given Java code block.
+JFC creates, compiles and evaluates a given java code block.
 
 Compilation is done in main memory, i.e. without writing to the file system. 
 
@@ -22,7 +22,7 @@ public class ScriptEvaluatorTest {
   }
 }
 ```
-Creates (in main memory):
+JFC creates (in main memory):
 ```
 package com.veracloud.jfc.scripts;
 
@@ -30,7 +30,7 @@ public final class MyJavaClass1 {
 	public static void eval() { System.out.println("Hello, World!"); }
 }
 ```
-Returns:
+JFC returns:
 ```
 Hello, World!
 ```
