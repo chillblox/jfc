@@ -1,4 +1,5 @@
 # JFC - Java Function Compiler
+
 JFC compiles and evaluates a given java code block (script) in main memory, i.e. without writing to the file system.
 
 Instances created by JFC are thread-safe if the user provided script statements are thread-safe. The result of JFC is an object that can be executed (and reused) any number of times. 
@@ -6,6 +7,7 @@ Instances created by JFC are thread-safe if the user provided script statements 
 JFC is a high performance variant of JSR 223 Java Scripting. Calling `ScriptEvaluator#evaluate(Object...)` just means calling `Method#invoke(Object, Object...)` and as such has the same minimal runtime cost.
 
 ## Example
+
 Source code to evaluate `System.out.println("Hello, World!")`:
 ```java
 import javax.script.ScriptException;
@@ -18,6 +20,7 @@ public class ScriptEvaluatorTest {
   }
 }
 ```
+
 JFC creates (in main memory):
 ```
 package com.veracloud.jfc.scripts;
@@ -26,7 +29,8 @@ public final class MyJavaClass1 {
 	public static void eval() { System.out.println("Hello, World!"); }
 }
 ```
-JFC returns:
+
+`e.evaluate()` returns:
 ```
 Hello, World!
 ```
