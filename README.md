@@ -1,6 +1,4 @@
 # JFC - Java Function Compiler
-High performance Java (script) evaluator.
-
 JFC creates and compiles a given Java code block.
 
 Compilation is done in main memory, i.e. without writing to the file system. 
