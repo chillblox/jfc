@@ -1,4 +1,4 @@
-# Java Code Compiler
+# JFC - Java Function Compiler
 High performance Java (script) evaluator.
 
 JFC creates and compiles a given Java code block.
@@ -15,10 +15,10 @@ Instances created by JFC are thread-safe if the user provided script statements 
 import javax.script.ScriptException;
 
 public class ScriptEvaluatorTest {
-  
   public static void main(String[] args) throws ScriptException {
-    ScriptEvaluator<Void> e = new ScriptEvaluator<>(null, "System.out.println(\"Hello, World!\");", Void.class, null, null, "");
-    System.out.println(e.evaluate());
+    String script = "System.out.println(\"Hello, World!\");";
+    ScriptEvaluator<Void> e = new ScriptEvaluator<>(null, script, Void.class, null, null, "");
+    e.evaluate();
   }
 }
 ```
