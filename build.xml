@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!DOCTYPE project>
+
+<project xmlns:artifact="antlib:org.apache.maven.artifact.ant"
+	name="jcr" default="build" basedir=".">
+	
+	<!-- ant properties -->
+	<!-- <property environment="env" />  -->
+	<property file="build.properties" />
+
+	<property name="output" value="bin" />
+	
+	<target name="init">
+		<tstamp />
+		<mkdir dir="lib/provided" />
+	</target>
+	
+	<!-- BEGIN: Maven2 ANT Task -->
+	
+	<target name="maven-init">
+		<path id="maven-ant-tasks.classpath" path="ant-tasks/maven-ant-tasks-2.1.3.jar" />
+		<typedef resource="org/apache/maven/artifact/ant/antlib.xml"
+			uri="antlib:org.apache.maven.artifact.ant" classpathref="maven-ant-tasks.classpath" />
+		<!-- scope: runtime -->
+		<artifact:pom id="mypom" file="ant-tasks/pom.xml" />
+		<artifact:dependencies filesetId="dependency.fileset"
+			sourcesFilesetId="sources.dependency.fileset" pomRefId="mypom"
+			useScope="runtime" />
+		<!-- scope: provided, test -->
+		<artifact:dependencies filesetId="dependency.provided.fileset"
+			sourcesFilesetId="sources.dependency.provided.fileset" pomRefId="mypom"
+			scopes="provided, test" />
+	</target>
+
+	<target name="maven-retrieve" depends="maven-init">
+		<mkdir dir="lib/maven" />
+		<copy todir="lib/maven">
+			<fileset refid="dependency.fileset" />
+			<!-- This mapper strips off all leading directory information -->
+			<mapper type="flatten" />
+		</copy>	
+		<mkdir dir="lib/maven/provided" />
+		<copy todir="lib/maven/provided">
+			<fileset refid="dependency.provided.fileset" />
+			<!-- This mapper strips off all leading directory information -->
+			<mapper type="flatten" />
+		</copy>
+	</target>
+
+	<target name="maven-retrieve-sources" depends="maven-init">
+		<mkdir dir="lib/maven/sources" />
+		<copy todir="lib/maven/sources">
+			<fileset refid="sources.dependency.fileset" />
+			<fileset refid="sources.dependency.provided.fileset" />
+			<mapper type="flatten" />
+		</copy>
+	</target>
+	
+	<target name="maven-retrieve-all" 
+		depends="maven-init, maven-retrieve, maven-retrieve-sources" />
+	
+	<target name="maven-cleanup">
+		<delete failonerror="false">
+			<fileset dir="lib/maven"/>
+		</delete>
+	</target>
+	
+	<!-- END: Maven2 ANT Task -->
+	
+	<path id="project.class.path">
+		<pathelement location="${output}/WEB-INF/classes" />
+		<fileset dir="lib/maven" includes="**/*.jar" />
+		<fileset dir="lib/maven/provided" includes="**/*.jar" />
+		<fileset dir="lib" includes="**/*.jar" />
+		<fileset dir="lib/provided" includes="**/*.jar" />
+	</path>
+	
+	<target name="javac" depends="init" description="Compile java source to bytecode">
+		<mkdir dir="${output}" />
+		<javac includeantruntime="false" srcdir="src" includes="**" encoding="utf-8" destdir="${output}"
+			source="1.7" target="1.7" nowarn="true" debug="true" debuglevel="lines,vars,source">
+			<classpath refid="project.class.path" />
+		</javac>
+		<copy todir="${output}">
+			<fileset dir="src" excludes="**/*.java" />
+			<fileset dir="resources" />
+		</copy>
+	</target>
+	
+	<target name="build" depends="javac" description="Build this project" >
+	</target>
+	
+	<target name="jar" depends="build" description="Create a jar file">
+		<jar destfile="${ant.project.name}-${app.version}.jar" basedir="${output}" 
+			excludes="**/StaticLoggerBinder.class, **/*Test.class"/>
+	</target>
+	
+	<target name="clean" description="Cleans this project">
+		<delete dir="${output}" failonerror="false" />
+		<delete dir="${output}/${ant.project.name}-${app.version}" failonerror="false" />
+	</target>
+
+</project>
