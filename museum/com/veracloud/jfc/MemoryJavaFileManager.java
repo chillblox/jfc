@@ -58,6 +58,7 @@ import javax.tools.SimpleJavaFileObject;
 /**
  * JavaFileManager that keeps compiled .class bytes in memory.
  */
+@Deprecated
 final class MemoryJavaFileManager extends ForwardingJavaFileManager<JavaFileManager> {        
 
   /** Java source file extension. */

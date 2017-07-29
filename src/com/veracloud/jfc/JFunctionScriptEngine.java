@@ -1,4 +1,4 @@
-package com.veracloud.jfc.jci;
+package com.veracloud.jfc;
 
 import java.io.IOException;
 import java.io.Reader;

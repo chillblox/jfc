@@ -55,6 +55,7 @@ import javax.tools.ToolProvider;
 /**
  * Simple interface to Java compiler using JSR 199 Compiler API.
  */
+@Deprecated
 final class JavaCompiler {
   private javax.tools.JavaCompiler tool;
   private StandardJavaFileManager stdManager;

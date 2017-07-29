@@ -62,6 +62,7 @@ import javax.script.SimpleBindings;
  * Modified JSR 223 Java Scripting (100x less overhead for invoking "static"
  * methods).
  */
+@Deprecated
 final class FastJavaScriptEngine extends AbstractScriptEngine implements Compilable {
 
   // Java compiler

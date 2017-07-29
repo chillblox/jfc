@@ -50,6 +50,7 @@ import java.util.StringTokenizer;
 /**
  * ClassLoader that loads .class bytes from memory.
  */
+@Deprecated
 final class MemoryClassLoader extends URLClassLoader {
   private Map<String, byte[]> classBytes;
 

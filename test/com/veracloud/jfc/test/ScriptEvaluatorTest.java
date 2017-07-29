@@ -1,6 +1,8 @@
-package com.veracloud.jfc;
+package com.veracloud.jfc.test;
 
 import javax.script.ScriptException;
+
+import com.veracloud.jfc.ScriptEvaluator;
 
 import junit.framework.TestCase;
 
@@ -12,7 +14,7 @@ public class ScriptEvaluatorTest extends TestCase {
   }
 
   public void testEvaluate2() throws ScriptException {
-    String script = "Runnable r = new Runnable() {\n" + 
+    final String script = "Runnable r = new Runnable() {\n" + 
         "  @Override\n" + 
         "  public void run() {\n" + 
         "    System.out.println(\"Hello, World!!!\");\n" + 
