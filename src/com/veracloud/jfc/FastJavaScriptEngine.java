@@ -187,12 +187,14 @@ final class FastJavaScriptEngine extends AbstractScriptEngine implements Compila
         return c;
       } else {
         // if class with "main" method, then return first class
-        Iterator<Class<?>> itr = classes.iterator();
-        if (itr.hasNext()) {
-          return itr.next();
-        } else {
-          return null;
+        for (Iterator<Class<?>> itr = classes.iterator(); itr.hasNext();) {
+          c = itr.next();
+          int modifiers = c.getModifiers();
+          if (Modifier.isPublic(modifiers)) {
+            return c;
+          }
         }
+        return null;
       }
     } catch (IOException ioe) {
       throw new ScriptException(ioe);
@@ -202,6 +204,9 @@ final class FastJavaScriptEngine extends AbstractScriptEngine implements Compila
   private static Class<?> findMainClass(Iterable<Class<?>> classes) {
     // find a public class with public static main method
     for (Class<?> clazz : classes) {
+      
+      System.out.println("===========["+clazz);;
+      
       int modifiers = clazz.getModifiers();
       if (Modifier.isPublic(modifiers)) {
         Method mainMethod = findMainMethod(clazz);

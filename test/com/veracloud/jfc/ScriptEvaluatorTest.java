@@ -10,4 +10,16 @@ public class ScriptEvaluatorTest extends TestCase {
     ScriptEvaluator<Void> e = new ScriptEvaluator<>(null, "System.out.println(\"Hello, World!\");", Void.class, null, null, null);
     assertEquals(null, e.evaluate());
   }
+
+  public void testEvaluate2() throws ScriptException {
+    String script = "Runnable r = new Runnable() {\n" + 
+        "  @Override\n" + 
+        "  public void run() {\n" + 
+        "    System.out.println(\"Hello, World!!!\");\n" + 
+        "  }\n" + 
+        "};\n" + 
+        "r.run();";
+    ScriptEvaluator<Void> e = new ScriptEvaluator<>(null, script, Void.class, null, null, null);
+    assertEquals(null, e.evaluate());
+  }
 }

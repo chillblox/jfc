@@ -117,7 +117,7 @@ public class ScriptEvaluator<T> {
       script += " ";
     }
 
-    script += "{ " + javaCodeBlock + " }";
+    script += "{\n" + javaCodeBlock + "\n\t}";
     script += "\n}";
 
     logger.log(Level.INFO, "Compiling script:\n{0}", script);
